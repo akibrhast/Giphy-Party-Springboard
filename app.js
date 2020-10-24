@@ -1,7 +1,7 @@
 console.log("Let's get this party started!");
 const API_KEY =  "MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym"
 const API_ENDPOINT = "https://api.giphy.com/v1/gifs/search"
-
+const RESULT_LIMIT  = 20
 
 
 
@@ -16,8 +16,8 @@ form.addEventListener('submit', event => {
   // Prevent Default For Submission
   event.preventDefault();
   const searchTerm = document.querySelector('input').value;
-  const api_data = callGiphyApi(searchTerm);
-  api_data.then(function(result){ appendGifToDom(result)})
+  //const api_data = callGiphyApi(searchTerm);
+  callGiphyApi(searchTerm).then(function(result){ appendGifToDom(result)})
 
   //Reset Form Values
   form.reset()
@@ -28,7 +28,7 @@ async function callGiphyApi(searchTerm){
     let res = await axios.get(API_ENDPOINT, {
     params: {
         api_key: API_KEY,
-        limit:1,
+        limit:RESULT_LIMIT,
         q:searchTerm
     }
   })
@@ -38,9 +38,8 @@ async function callGiphyApi(searchTerm){
 
 
 function appendGifToDom(gifArray){
-    //console.log(x)
-    for(let gif of gifArray){
-        console.log(gif)
+  gif = gifArray[returnRandomInt(gifArray.length-1)];
+    // for(let gif of gifArray){
         $('.images').append(
         `
         <div class="col-md-3">
@@ -61,26 +60,12 @@ function appendGifToDom(gifArray){
         </div>
         </div>
         `)
-    }
+    // }
 
 
   }
 
-
-//   axios.get(API_ENDPOINT, {
-//     params: {
-//         api_key: API_KEY,
-//         limit:10,
-//         q:x
-//     }
-//   })
-//   .then(function (response) {
-//     const {data} = response.data;
-//     return data;
-//     // appendGifToDom(data);
-
-//     //console.log(data[0]);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
+function returnRandomInt(maxValue) {
+  var x = Math.floor((Math.random() * maxValue) + 1);
+  return x;
+}
