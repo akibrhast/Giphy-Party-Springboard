@@ -4,26 +4,6 @@ const API_ENDPOINT = "https://api.giphy.com/v1/gifs/search"
 const RESULT_LIMIT  = 20
 
 
-
-$("#delete_button" ).click(function() {
-    $( ".images" ).empty();
-});
-
-//Form Selector
-const form = document.querySelector("form");
-//Form OnSubmit listener to prevent default and append image node
-form.addEventListener('submit', event => {
-  // Prevent Default For Submission
-  event.preventDefault();
-  const searchTerm = document.querySelector('input').value;
-  //const api_data = callGiphyApi(searchTerm);
-  callGiphyApi(searchTerm).then(function(result){ appendGifToDom(result)})
-
-  //Reset Form Values
-  form.reset()
-
-
-})
 async function callGiphyApi(searchTerm){
     let res = await axios.get(API_ENDPOINT, {
     params: {
@@ -69,3 +49,16 @@ function returnRandomInt(maxValue) {
   var x = Math.floor((Math.random() * maxValue) + 1);
   return x;
 }
+
+$("#delete_button" ).click(function() {
+  $( ".images" ).empty();
+});
+
+$( "form" ).submit(function( event ) {
+  event.preventDefault();
+  const searchTerm = $("input").val()
+  //const api_data = callGiphyApi(searchTerm);
+  callGiphyApi(searchTerm).then(function(result){ appendGifToDom(result)})
+  //Reset Form Values
+  event.target.reset()
+});
