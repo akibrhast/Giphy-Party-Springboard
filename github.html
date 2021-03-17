@@ -17,13 +17,13 @@
   
   const clientId = '0f4d20ae24b10b1b1e45';
   const clientSecret = '698886ef07bc854459044d012b5be122472795f6';
-  const redirect = 'https://akibrhast.github.io/Giphy-Party-Springboard/callback'
+  const redirect = 'https://akibrhast.github.io/Giphy-Party-Springboard/callback';
   
-  (async function(cid,red){
+  (async function(){
     let res = await axios.get('https://github.com/login/oauth/authorize', {
                   params: {
-                      client_id: cid,
-                      redirect_uri:red,
+                      client_id: clientSecret,
+                      redirect_uri:redirect,
                   }
               })
   console.log(res.data)
