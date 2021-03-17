@@ -17,7 +17,9 @@
   const clientSecret = '698886ef07bc854459044d012b5be122472795f6';
   const redirect = 'https://akibrhast.github.io/Giphy-Party-Springboard/callback'
   
-  fetch(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect}`)
+  fetch(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect}`,{
+    mode: 'no-cors', // no-cors
+  })
     .then(response => response.json())
     .then(data => console.log(data));
 </script>
