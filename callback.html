@@ -21,12 +21,10 @@
   (async function(){
     const urlParams = Object.fromEntries(new URLSearchParams(window.location.search));
     let res = await axios.post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token', {
-                  params: {
                       client_id: clientId,
                       client_secret: clientSecret,
                       redirect_uri:redirect,
                       code: urlParams.code
-                  }
               })
   document.body.append(res.data)
   return res.data;
