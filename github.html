@@ -12,5 +12,12 @@
 </html>
 
 <script>
-  console.log('Hello World')
+  console.log('Hello World app url')
+  const clientiId = '0f4d20ae24b10b1b1e45';
+  const clientSecret = '698886ef07bc854459044d012b5be122472795f6';
+  const redirect = 'https://akibrhast.github.io/Giphy-Party-Springboard/callback'
+  
+  fetch(`https://github.com/login/oauth/authorize?client_id=${cliendId}&redirect_uri=${redirect}`)
+    .then(response => response.json())
+    .then(data => console.log(data));
 </script>
