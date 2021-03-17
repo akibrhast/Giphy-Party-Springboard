@@ -10,16 +10,25 @@
 
 </body>
 </html>
-
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
 <script>
   console.log('Hello World app url')
+  
   const clientId = '0f4d20ae24b10b1b1e45';
   const clientSecret = '698886ef07bc854459044d012b5be122472795f6';
   const redirect = 'https://akibrhast.github.io/Giphy-Party-Springboard/callback'
   
-  fetch(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect}`,{
-    mode: 'no-cors', // no-cors
-  })
-    .then(response => response.json())
-    .then(data => console.log(data));
+  (async function(cid,red){
+    let res = await axios.get('https://github.com/login/oauth/authorize', {
+                  params: {
+                      client_id: cid,
+                      redirect_uri:red,
+                  }
+              })
+  console.log(res.data)
+  return res.data;
+})()
+  
+
 </script>
