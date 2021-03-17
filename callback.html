@@ -17,7 +17,7 @@
   const redirect = 'https://akibrhast.github.io/Giphy-Party-Springboard/callback';
   
   (async function(){
-    const urlParams = new URLSearchParams(queryString);
+    const urlParams = new URLSearchParams(window.location.search);
     let res = await axios.post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token', {
                   params: {
                       client_id: clientId,
