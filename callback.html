@@ -12,5 +12,21 @@
 </html>
 
 <script>
-  console.log('callback')
+  const clientId = '0f4d20ae24b10b1b1e45';
+  const clientSecret = '698886ef07bc854459044d012b5be122472795f6';
+  const redirect = 'https://akibrhast.github.io/Giphy-Party-Springboard/callback';
+  
+  (async function(){
+    const urlParams = new URLSearchParams(queryString);
+    let res = await axios.post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token', {
+                  params: {
+                      client_id: clientId,
+                      client_secret: clientSecret,
+                      redirect_uri:redirect,
+                      code: urlParams.code
+                  }
+              })
+  document.body.append(res.data)
+  return res.data;
+})()
 </script>
